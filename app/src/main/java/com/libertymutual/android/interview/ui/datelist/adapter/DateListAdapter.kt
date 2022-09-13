@@ -11,8 +11,6 @@ import com.libertymutual.android.interview.databinding.ListItemDateBinding
 class DateListAdapter :
     ListAdapter<DateItem, DateListViewHolder>(DateListDiffCallback()) {
 
-    // private var dateItemList: List<DateItem> = emptyList()
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DateListViewHolder =
         DateListViewHolder.from(parent)
 
