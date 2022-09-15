@@ -2,18 +2,24 @@ package com.libertymutual.android.interview.ui.datelist
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.libertymutual.android.interview.data.DateItem
+import com.libertymutual.android.interview.repository.EpicAPIImpl
+import kotlinx.coroutines.launch
 
 class DateListViewModel : ViewModel() {
     val dateItems = MutableLiveData<List<DateItem>>()
+    private val epicAPI = EpicAPIImpl()
 
     fun onViewCreated() {
-        setupMockDataForList()
+        getDates()
     }
 
-    private fun setupMockDataForList() {
-        val mockDates = listOf("1/1/2022", "1/2/2022", "1/3/2022", "1/4/2022")
-        val mockDateItems = mockDates.map { date -> DateItem(date) }
-        dateItems.value = mockDateItems
+    private fun getDates() = viewModelScope.launch {
+        val response = epicAPI.getAllDates()
+        if (response.isSuccessful) {
+            val data = response.body()
+            dateItems.value = data?.map { rawDate -> DateItem(rawDate.date) }
+        }
     }
 }
