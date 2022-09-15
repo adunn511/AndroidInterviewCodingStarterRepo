@@ -17,24 +17,16 @@ as a starting point so someone can easily clone and start coding, this included 
 ## App Specification
 
 - Day list (home screen) - The UI for this has been started, although the API calls will need to be hooked up and the table will need to be populated with Dates from the server:
-    - A list that shows the dates with available data. Each row will show a date. On the left side of the row, there will be an indicator:
-        - If no data is downloaded for that day, show an empty circle.
-        - If data is being downloaded for that day, show a progress indicator.
-        - If all data is downloaded for that day, show a checkmark.
-    - Selecting a row takes you to the photo list.
+  - A list that shows the dates with available data. Each row will show a date. On the left side of the row, there will be an indicator:
+    - If no data is downloaded for that day, show an empty circle.
+    - If data is being downloaded for that day, show a progress indicator.
+    - If all data is downloaded for that day, show a checkmark.
+  - Selecting a row takes you to the photo list.
 - Photo list:
-    - A grid view of images for this day.
-    - If an image has been downloaded, show a thumbnail of the image.
-    - If the image is being downloaded, show a progress indicator similar to the one used above. A placeholder thumbnail should be shown.
-    - Tapping the area of a downloaded image takes you to the photo screen.
-    - In the toolbar menu at the top of the screen is a play icon. This button is disabled while this day’s downloads are in progress. Tapping this takes you to the player screen.
+  - A grid view of images for this day.
+  - If an image has been downloaded, show a thumbnail of the image.
+  - If the image is being downloaded, show a progress indicator similar to the one used above. A placeholder thumbnail should be shown.
+  - Tapping the area of a downloaded image takes you to the photo screen.
 - Photo screen
-    - Show a downloaded photo scaled to fit the screen.
-    - Allow the user to pinch to zoom, use one finger to pan the image.
-    - Provide a menu icon on the toolbar to show metadata about the photo.
-
-- # Bonus
-- Add in a Player screen
-    - Show an animated sequence of the images for the day. The animation should proceed at 24 frames per second.
-    - Sliding one finger over the image should scrub forward or backward through the animation.
-    - Allow the user to pinch to zoom, use two fingers to pan the image.
+  - Show a downloaded photo scaled to fit the screen.
+  - Allow the user to pinch to zoom, use one finger to pan the image.
