@@ -5,10 +5,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.libertymutual.android.interview.data.DateItem
 import com.libertymutual.android.interview.repository.EpicAPIImpl
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 
 class DateListViewModel : ViewModel() {
-    val dateItems = MutableLiveData<List<DateItem>>()
+
+    private val _uiState = MutableStateFlow(UIState(dateItems = emptyList()))
+    val uiState: StateFlow<UIState> =_uiState
     private val epicAPI = EpicAPIImpl()
 
     fun onViewCreated() {
@@ -23,3 +27,7 @@ class DateListViewModel : ViewModel() {
         }
     }
 }
+
+data class UIState (
+    val dateItems: List<DateItem>
+)

@@ -6,12 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.libertymutual.android.interview.R
-import com.libertymutual.android.interview.data.DateItem
 import com.libertymutual.android.interview.ui.datelist.adapter.DateListAdapter
 import kotlinx.android.synthetic.main.fragment_date_list.*
+import kotlinx.coroutines.launch
 
 class DateListFragment : Fragment() {
 
@@ -32,7 +32,6 @@ class DateListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[DateListViewModel::class.java]
         configureRecyclerView()
-        observeLiveData()
         viewModel.onViewCreated()
     }
 
@@ -41,12 +40,10 @@ class DateListFragment : Fragment() {
             adapter = dateListAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
-    }
-
-    private fun observeLiveData() {
-        val dateListObserver = Observer<List<DateItem>> {
-            dateItemList -> dateListAdapter.submitList(dateItemList)
+        lifecycleScope.launch {
+            viewModel.uiState.collect {
+                dateListAdapter.submitList(it.dateItems)
+            }
         }
-        viewModel.dateItems.observe(viewLifecycleOwner, dateListObserver)
     }
 }
