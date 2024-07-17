@@ -1,6 +1,5 @@
 package com.libertymutual.android.interview.ui.datelist
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.libertymutual.android.interview.data.DateItem
@@ -8,6 +7,7 @@ import com.libertymutual.android.interview.repository.EpicAPIImpl
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 class DateListViewModel : ViewModel() {
 
@@ -22,8 +22,8 @@ class DateListViewModel : ViewModel() {
     private fun getDates() = viewModelScope.launch {
         val response = epicAPI.getAllDates()
         if (response.isSuccessful) {
-            val data = response.body()
-            dateItems.value = data?.map { rawDate -> DateItem(rawDate.date) }
+            val data = response.body() ?: emptyArray()
+            _uiState.update { it.copy(dateItems = data.map { rawDate -> DateItem(rawDate.date) }) }
         }
     }
 }
