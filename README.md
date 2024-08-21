@@ -17,11 +17,13 @@ as a starting point so someone can easily clone and start coding, this included 
 ## App Specification
 
 - Day list (home screen) - The UI for this has been started, although the API calls will need to be hooked up and the table will need to be populated with Dates from the server:
-  - A list that shows the dates with available data. Each row will show a date. On the left side of the row, there will be an indicator:
-    - If no data is downloaded for that day, show an empty circle.
-    - If data is being downloaded for that day, show a progress indicator.
-    - If all data is downloaded for that day, show a checkmark.
+  - A list that shows the dates with available data. Each row will show a date
   - Selecting a row takes you to the photo list.
+  - Something to think about conceptually (Can skip if we are pressed for time):
+    - On the left side of the row, how would we show an indicator with the following requirements?:
+      - If no data is downloaded for that day, show an empty circle.
+      - If data is being downloaded for that day, show a progress indicator.
+      - If all data is downloaded for that day, show a checkmark.
 - Photo list:
   - A grid view of images for this day.
   - If an image has been downloaded, show a thumbnail of the image.
