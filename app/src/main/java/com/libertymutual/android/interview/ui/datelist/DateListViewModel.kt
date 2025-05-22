@@ -1,6 +1,5 @@
 package com.libertymutual.android.interview.ui.datelist
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.libertymutual.android.interview.data.DateItem
 import kotlinx.coroutines.flow.MutableStateFlow
