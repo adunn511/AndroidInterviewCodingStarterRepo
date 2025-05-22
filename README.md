@@ -4,6 +4,8 @@ as a starting point so someone can easily clone and start coding, this included 
 - A fragment and viewModel for the DateList
 - A working example of a RecyclerView that is currently populated with mock data
 - An example of a Fragment subscribing and updating to a LiveData field on a ViewModel
+- Use can use XML or Compose if you wish. The compose stuff is under the composables directory
+- If you wish to use Compose, in MainActivity set the `private val useCompose` to `true`
 # EPIC (Earth Polychromatic Imaging Camera) Imagery
 
 [API Information](https://epic.gsfc.nasa.gov/about/api)
