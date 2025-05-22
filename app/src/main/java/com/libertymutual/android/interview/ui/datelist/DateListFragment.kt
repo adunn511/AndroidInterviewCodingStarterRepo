@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.libertymutual.android.interview.R
+import com.libertymutual.android.interview.databinding.FragmentDateListBinding
 import com.libertymutual.android.interview.ui.datelist.adapter.DateListAdapter
-import kotlinx.android.synthetic.main.fragment_date_list.*
 import kotlinx.coroutines.launch
 
 class DateListFragment : Fragment() {
@@ -19,13 +19,17 @@ class DateListFragment : Fragment() {
         fun newInstance() = DateListFragment()
     }
 
+    private var _binding: FragmentDateListBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var viewModel: DateListViewModel
 
     private val dateListAdapter = DateListAdapter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.fragment_date_list, container, false)
+        _binding =  FragmentDateListBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,7 +40,7 @@ class DateListFragment : Fragment() {
     }
 
     private fun configureRecyclerView() {
-        dateListRecyclerView.apply {
+        binding.dateListRecyclerView.apply {
             adapter = dateListAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
@@ -45,5 +49,10 @@ class DateListFragment : Fragment() {
                 dateListAdapter.submitList(it.dateItems)
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
